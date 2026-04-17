@@ -78,4 +78,26 @@ p4 <- ggplot(df, aes(x = y)) +
   ) +
   theme_bw()
 
+# QQ-plot for raw PM2.5
+p_qq_raw <- ggplot(df, aes(sample = pm25_daily)) +
+  stat_qq(color = "steelblue", size = 0.5) +
+  stat_qq_line(color = "red", linewidth = 0.8) +
+  labs(
+    title = expression("Normal QQ-Plot: Raw PM"[2.5]),
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  ) +
+  theme_bw()
+
+# QQ-plot for log-transformed PM2.5
+p_qq_log <- ggplot(df, aes(sample = y)) +
+  stat_qq(color = "steelblue", size = 0.5) +
+  stat_qq_line(color = "red", linewidth = 0.8) +
+  labs(
+    title = expression("Normal QQ-Plot: log(PM"[2.5]*" + 0.1)"),
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  ) +
+  theme_bw()
+
 
