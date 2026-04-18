@@ -105,7 +105,7 @@ cat(sprintf("sigma: %.0f%%\n", 100 * mean(coverage_sigma)))
 cat(sprintf("nu:    %.0f%%\n", 100 * mean(coverage_nu)))
 
 
-MCSE 
+#MCSE 
 print(fit1$summary(c("mu", "sigma"), c("mean", "mcse_mean")))
 
 print(fit2$summary(c("mu", "sigma", "nu"), c("mean", "mcse_mean")))
