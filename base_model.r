@@ -46,7 +46,7 @@ fit2$cmdstan_diagnose()
 
 mcmc_trace(fit2$draws(c("mu", "sigma", "nu", "beta[7]", "beta[8]")))
 
-# ── LOO-CV comparison ──
+#LOO-CV comparison
 loo1 <- loo(fit1$draws("log_lik"))
 loo2 <- loo(fit2$draws("log_lik"))
 print(loo_compare(loo1, loo2))
@@ -67,7 +67,7 @@ ggplot(df_ppc, aes(x = max_yrep, fill = Model)) +
   labs(title = "Posterior Predictive Check: Distribution of max(y_rep)", x = "max(y_rep)") +
   theme_bw()
 
-# ── ADVI comparison ──
+#ADVI comparison
 fit2_vi <- mod2$variational(data = stan_data, algorithm = "meanfield",
                             output_samples = 1000)
 # Compare nu and sigma between HMC and ADVI
