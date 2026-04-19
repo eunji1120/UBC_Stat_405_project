@@ -1,5 +1,4 @@
 library(cmdstanr)
-install.packages("loo")
 library(loo)
 library(ggplot2)
 df <- read.csv("data_processed/pm25_daily_clean_2022_2025.csv")
