@@ -14,31 +14,28 @@ data {
   vector[N] y;
   array[N] int<lower=1, upper=12> month;
 }
-
-
 parameters {
   real mu;
   vector[12] beta;
   real<lower=0> sigma;
 }
-
-
-
 model {
-  // priors
   mu ~ normal(2, 1);
   beta ~ normal(0, 1);
   sigma ~ exponential(1);
-  
-  // soft sum-to-zero constraint
-  //since without this the mu and betas are shifting freely
-  sum(beta) ~ normal(0, 0.001); 
-
-  // likelihood
-  for (n in 1:N) {
+  sum(beta) ~ normal(0, 0.001);
+  for (n in 1:N)
     y[n] ~ normal(mu + beta[month[n]], sigma);
+}
+generated quantities {
+  vector[N] log_lik;
+  vector[N] y_rep;
+  for (n in 1:N) {
+    log_lik[n] = normal_lpdf(y[n] | mu + beta[month[n]], sigma);
+    y_rep[n] = normal_rng(mu + beta[month[n]], sigma);
   }
 }
+
 
 
 

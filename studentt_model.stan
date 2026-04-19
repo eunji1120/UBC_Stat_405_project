@@ -18,23 +18,22 @@ parameters {
   real mu;
   vector[12] beta;
   real<lower=0> sigma;
-  real<lower=1> nu;  
+  real<lower=1> nu;
 }
 model {
-  // priors
   mu ~ normal(2, 1);
   beta ~ normal(0, 1);
   sigma ~ exponential(1);
   nu ~ gamma(2, 0.1);
   sum(beta) ~ normal(0, 0.001);
-
-  // likelihood
   for (n in 1:N)
     y[n] ~ student_t(nu, mu + beta[month[n]], sigma);
 }
-
 generated quantities {
   vector[N] log_lik;
-  for (n in 1:N)
-    log_lik[n] = student_t_lpdf(y[n] | nu, mu + beta[month[n]], sigma);
+  vector[N] y_rep;
+  for (n in 1:N) {
+    log_lik[n] = student_t_lpdf(y[n] | nu, mu+beta[month[n]], sigma);
+    y_rep[n] = student_t_rng(nu, mu+beta[month[n]], sigma);
+  }
 }
