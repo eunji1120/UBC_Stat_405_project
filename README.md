@@ -15,7 +15,7 @@ STAT 405 Final Project — Eun Ji Hwang
 1. `the pm2.5 plot and log(pm2.5)plot.r` — EDA and Figure 1
 2. `base_model.r` — Fit Model 1 (HMC)
 3. `studentt_model.r` — Fit Model 2 (HMC)
-4. `HMC ADVI.r` — LOO-CV, PPC, and ADVI comparison (Figures 3-4)
+4. `hmc_advi.r` — LOO-CV, PPC, and ADVI comparison (Figures 3-4)
 5. `sensitivity_and_synth.r` — Prior sensitivity and synthetic data calibration
 6. `mixture_model.r` — Mixture model attempt
 
