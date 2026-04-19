@@ -46,7 +46,7 @@ p_sens <- ggplot(df_sens, aes(x = nu, fill = Prior)) +
 
 
 #SYNTHETIC DATA CORRECTNESS TEST 
-mod2 <- cmdstan_model("stan/model2_studentt.stan")
+mod2 <- cmdstan_model("studentt_model.stan")
 
 n_reps <- 50
 N_sim  <- 200
